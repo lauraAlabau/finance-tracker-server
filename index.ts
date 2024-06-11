@@ -7,19 +7,7 @@ import config from "./config";
 const app: Express = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || origin.startsWith("https://finance-tracker")) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 const URI: string = config.DB_REMOTE;
