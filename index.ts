@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || origin.startsWith("finance-tracker-srv")) {
+      if (!origin || origin.startsWith("https://finance-tracker-srv")) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
