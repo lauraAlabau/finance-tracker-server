@@ -9,7 +9,13 @@ const app: Express = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://finance-tracker-srv.vercel.app/",
+    origin: (origin, callback) => {
+      if (!origin || origin.startsWith("finance-tracker-srv")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
