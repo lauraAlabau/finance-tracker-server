@@ -7,7 +7,13 @@ import config from "./config";
 const app: Express = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://finance-tracker-srv.vercel.app/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 3000;
 const URI: string = config.DB_REMOTE;
